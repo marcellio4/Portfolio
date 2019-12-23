@@ -17,10 +17,10 @@ class Config{
      */
 	public static function setDB($name){
 		self::$DB = array(
-		    "host" => '',
-            "name" => '',
-            "user" => '',
-            "password" => ''
+		    "host" => "",
+            "name" => "",
+            "user" => "",
+            "password" => ""
         );
 		return self::$DB[$name];
 	}
@@ -35,7 +35,7 @@ class Config{
             "username" => "",
             "password" => "",
             "SMTPAuth" => true,
-            "port" => ,
+            "port" => "",
             "debug" => 0 //SMTP::DEBUG_SERVER;
         );
         return self::$mail[$name];
