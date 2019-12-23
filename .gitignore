@@ -1,0 +1,7 @@
+# php storm settings
+.idea
+
+# documentation of the project and sitemap
+sitemap.xml
+*.docx
+classes/Config.php
