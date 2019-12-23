@@ -1,0 +1,435 @@
+/*
+This file is set up for visualisation of website.
+
+1. set up font style that you want to use at your website 10-20
+2. reset the whole website elements 20 - 46
+3. set up navigation menu with underline effect and for humberger  47 - 158
+4. Set up index page with 3D flip button 160 - 240
+5. Set up header with some content that is repeat at other web pages such as H1 243 -321
+6. About me page 324 - 402
+7. Project page 406 - 455
+8. Contact me page 458 - 533
+9. Footer 544 - 676
+10. Responsive design 679 - 905
+
+*/
+
+/* 1
+font style
+*/
+@font-face{
+    font-family: 'Ubuntu';
+    src: url("../media/fonts/Ubuntu-Medium.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* 2
+RESET
+*/
+html, body, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, figure, figcaption, form, fieldset, label, legend, dl, dt, dd, table, td, th, caption {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+}
+ul, ol {
+    list-style-type: none;
+}
+
+/* Sane Default */
+body{
+    background-color: #e0e0e0 !important;
+}
+section, article, header, footer, nav, aside, main {
+    display: block;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-family: 'Ubuntu', Georgia, serif;
+}
+
+.name{
+    margin-right: 3rem;
+}
+
+/* 3
+Main navigation
+*/
+/* underline animation under links #331a00 */
+.my-navbar {
+    background-color: #249afa;
+}
+ul{
+    width: 100%;
+}
+ul.my-nav li a {
+    text-decoration: none;
+    color: #fff !important;
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: 18px;
+    padding-right: 1.5rem !important;
+    padding-left: 1.5rem !important;
+}
+
+nav div ul li a,
+nav div ul li a:after,
+nav div ul li a:before {
+    transition: all .5s;
+}
+ul.my-nav li a:hover {
+    color: #8bc34a !important;
+}
+
+/* stroke */
+nav.stroke div ul li a,
+nav.fill  div ul li a {
+    position: relative;
+}
+nav.stroke div ul li a:after,
+nav.fill div ul li a:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #8bc34a;
+    height: 1px;
+}
+nav.stroke div ul li a:hover:after {
+    width: 100%;
+}
+
+nav.fill div ul li a {
+    transition: all 2s;
+}
+
+nav.fill div ul li a:after {
+    text-align: left;
+    content: '.';
+    margin: 0;
+    opacity: 0;
+}
+nav.fill div ul li a:hover {
+    color: #8bc34a;
+    z-index: 1;
+}
+nav.fill div ul li a:hover:after {
+    z-index: -10;
+    animation: fill 1s forwards;
+    -webkit-animation: fill 1s forwards;
+    -moz-animation: fill 1s forwards;
+    opacity: 1;
+}
+
+/* Keyframes for stroke*/
+@-webkit-keyframes fill {
+    0% {
+        width: 0%;
+        height: 1px;
+    }
+    50% {
+        width: 100%;
+        height: 1px;
+    }
+    100% {
+        width: 100%;
+        height: 100%;
+        background: #8bc34a;
+    }
+}
+
+/* 4
+Style our index main page
+*/
+.my-jumb{
+    margin-top: 5rem;
+    background-image: url('../images/banner.jpg');
+    background-size: cover;
+    color: #000;
+    overflow: hidden;
+}
+.my-float-right{
+    float: right;
+    clear: right;
+}
+
+.introduction{
+    margin-top: 6em;
+    margin-bottom: 6em;
+}
+
+/* 6
+About me page
+*/
+.my-set-header{
+    margin-top: 5rem;
+    margin-bottom: 2rem;
+}
+
+#my_skills{
+    width: 100%;
+    padding: 20px;
+    background: #87562c;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border-radius: 1%;
+}
+#my_skills h3{
+    color: #8bc34a;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 16px;
+    font-weight: bold;
+}
+.skill_box{
+    box-sizing: border-box;
+    width: 100%;
+    margin: 20px 0;
+}
+.skill_box p{
+    color: #fff;
+    text-transform: uppercase;
+    margin: 0 0 10px;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+.skill_box p:nth-child(2){
+    float: right;
+    position: relative;
+    top: -25px;
+}
+.skill{
+    background: #ffffff;
+    padding: 4px;
+    box-sizing: border-box;
+    border: 1px solid #8bc34a;
+    border-radius: 2px;
+}
+.skill_level{
+    background: #8bc34a;
+    height: 10px;
+}
+
+/* 7  Project page */
+#bubblebox{
+    border-radius: 1%;
+    box-sizing: border-box;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+#bubbles{
+    text-align:center;
+}
+#bubbles > div{
+    display:inline-block;
+    width:10px;
+    height:10px;
+    margin:24px 10px 0px 10px;
+    background:rgba(0,0,0,.1);
+    border:2px solid #999;
+    border-radius:100%;
+    font-size:17px;
+    text-decoration:none;
+    transition: background 0.3s linear 0s;
+    cursor:pointer;
+}
+#bubblecontent{
+    transition:opacity 0.3s linear 0s;
+    text-align: center;
+}
+
+#bubblecontent > h3{
+    padding-top: 1rem;
+    text-align:center;
+    color:#7EA800;
+}
+#bubblecontent > p{
+    padding-top: 1rem;
+    font-size:17px;
+    line-height:1.5em;
+}
+
+
+/* 8    Contact page */
+
+.text-contact {
+    margin-bottom: 1rem;
+    margin-top: 5rem;
+}
+
+label.error{
+    border: none;
+    box-shadow: none;
+}
+
+.error{
+    color:red;
+    border: 1px solid;
+    box-shadow: 1px 1px;
+}
+
+.custom-select.error{
+    border-color: red;
+}
+
+option, .custom-select{
+    color: #000000;
+}
+
+.valid{
+    border: 1px solid #7EA800;
+}
+
+.submit-message{
+    color: #1e7b1e;
+    padding: 1rem;
+}
+
+.message{
+    border: 1px solid #1e7b1e;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.form-control:focus, .custom-select:focus {
+    box-shadow: 1px 1px;
+    border: 1px solid #249afa;
+}
+
+p.message-error {
+    color: red;
+    border: 1px solid;
+    border-radius: 5px;
+    width: 60%;
+    padding: 8px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+input[type=submit]:focus{
+    border:none;
+}
+
+
+/* 9 footer */
+.my-foot{
+    background-color: #04177b;
+    color: #fff !important;
+    font-size: 14px;
+}
+
+.row{
+    margin-bottom: 2rem;
+}
+
+.col-md-4,.col-md-4 {
+    padding-top: 10px;
+}
+
+.my-foot-a{
+    padding-top: 10px;
+}
+.my-foot-a > a{
+    float: left;
+    clear: both;
+    text-decoration: none;
+    color: inherit;
+}
+
+.my-foot-a >a:hover{
+    color: #fff;
+}
+
+.allrights{
+    font-size: 12px;
+}
+
+.fa {
+    padding: 10px;
+    font-size: 15px;
+    width: 35px;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 50%;
+    float: none;
+    background-color: #fff;
+}
+
+.fa-github{
+    color: #000;
+}
+
+.fa:hover {
+    opacity: 0.7;
+    color: #000;
+    text-decoration: none;
+}
+
+
+/* 10
+Responsive
+*/
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+
+}
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+    /* Set up navigation bar */
+    nav div	ul li {
+        float: none;
+        display: block;
+        text-align: center;
+        margin-bottom: 0.5em;
+        padding: 0em;
+        background-color: #331a00;
+    }
+    ul li a {
+        clear: both;
+        float: none;
+    }
+    .my-navbar{
+        background-color: lightgrey;
+    }
+
+    article.text-contact {
+        margin-top: 5rem;
+    }
+
+    p.message {
+        width: 100%;
+    }
+
+    p.message-error {
+        width: 100%;
+    }
+}
+
+/* Medium devices (tablets, less than 992px) */
+@media (max-width: 991.98px) {
+    .my-jumb{
+        background-image: url('../images/robot.jpg');
+    }
+    .my-float-right{
+        float: none;
+    }
+    .introduction{
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+    #my_skills{
+        margin-top: 2rem;
+    }
+}
+
+/* Large devices (desktops, less than 1200px) */
+@media (max-width: 1199.98px) {
+
+}

@@ -1,0 +1,31 @@
+<main class="container" role="main">
+    <section class="introduction">
+        <article class="text-contact">
+            <p>Reset yours password below:</p>
+            <span class="submit-message">[+reset+]</span>
+        </article>
+        <article>
+            <form class="col-md-6" id="confirmPassword" method="post" action="">
+                <div class="form-group">
+                    <label for="mail">Email</label>
+                    <input type="email" id="mail" name="mail" class="form-control" aria-describedby="mailHelpBlock" required>
+                    <small id="mailHelpBlock" class="form-text text-muted">
+                        Please enter your account email.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" class="form-control" aria-describedby="passwordHelpBlock" required>
+                    <small id="passwordHelpBlock" class="form-text text-muted">
+                        Your password must be 6-12 characters long, contain letters and numbers, and must not contain spaces or special characters.
+                    </small>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPass">Confirm Password</label>
+                    <input type="password" class="form-control" name="confirmPass" id="confirmPass" required>
+                </div>
+                <button type="submit" class="btn btn-primary resetPass">Submit</button>
+            </form>
+        </article>
+    </section>
+</main>

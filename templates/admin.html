@@ -1,0 +1,32 @@
+<main id="wrapper" role="main">
+  <section id="main_content">
+    <h1>[+header+]</h1>
+  </section>
+  <div>
+    [+Welcome+]
+  </div>
+  <section id="admin_body">
+    <form enctype="multipart/form-data" action="[+Actionlink+]" method="post">
+			<fieldset>
+			<legend>File Upload</legend>
+            <div>
+                <label for="fileinput">Upload an image:</label>
+				<!-- "name" of input (userfile) will be the "key" in $_FILES -->
+                <input name="userfile" type="file" id="fileinput" />
+            </div>
+			<div>
+                <label for="title">Title:</label>
+                <input placeholder="Type title of your image here..." name="title" type="text" id="title" value="[+title+]"/>
+            </div>
+			<div>
+				<label for="msg">Description:</label>
+				<textarea placeholder="Type your description here..." name="description" id="msg" >[+description+]</textarea>
+			</div>
+            <div>
+                <input type="submit" value="Upload File" name="singlefileupload" />
+            </div>
+			</fieldset>
+        </form>
+		<span>[+message+]</span>
+  </section>
+</main>
