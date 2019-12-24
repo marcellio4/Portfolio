@@ -6,8 +6,8 @@ function pages($id_page){
 			case 'home'     :
 				return include 'views/home.php';
 				break;
-			case 'about'    :
-				return include 'views/about.php';
+			case 'skills'    :
+				return include 'views/skills.php';
 				break;
 			case 'projects' :
 				return include 'views/projects.php';
@@ -74,7 +74,7 @@ function sanitizedURL(){
 }
 
 /**
- * @param string $page page to redirect
+ * @param string $page page to redirect example(index.php)
  */
 function redirectPage($page){
     header("Location: $page");

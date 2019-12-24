@@ -52,9 +52,11 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 3rem;
 }
 
-/* 3
-Main navigation
-*/
+article.settings {
+    margin-top: 1.75rem;
+}
+
+/* 3 Main navigation */
 /* underline animation under links #331a00 */
 .my-navbar {
     background-color: #249afa;
@@ -142,9 +144,7 @@ nav.fill div ul li a:hover:after {
     }
 }
 
-/* 4
-Style our index main page
-*/
+/* 4 Style our index main page */
 .my-jumb{
     margin-top: 5rem;
     background-image: url('../images/banner.jpg');
@@ -162,104 +162,89 @@ Style our index main page
     margin-bottom: 6em;
 }
 
-/* 6
-About me page
-*/
-.my-set-header{
-    margin-top: 5rem;
-    margin-bottom: 2rem;
+/* 6 Skills page */
+.settings .card-header{
+    padding: 0.75rem 1.25rem;
+}
+.collapse-header{
+    cursor: pointer;
 }
 
-#my_skills{
-    width: 100%;
-    padding: 20px;
-    background: #87562c;
-    box-sizing: border-box;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-    border-radius: 1%;
-}
-#my_skills h3{
-    color: #8bc34a;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    font-size: 16px;
-    font-weight: bold;
-}
-.skill_box{
-    box-sizing: border-box;
-    width: 100%;
-    margin: 20px 0;
-}
-.skill_box p{
+.card-header .btn {
     color: #fff;
-    text-transform: uppercase;
-    margin: 0 0 10px;
-    font-weight: bold;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-.skill_box p:nth-child(2){
     float: right;
-    position: relative;
-    top: -25px;
-}
-.skill{
-    background: #ffffff;
-    padding: 4px;
-    box-sizing: border-box;
-    border: 1px solid #8bc34a;
+    font-size: 13px;
+    border: none;
+    min-width: 50px;
     border-radius: 2px;
+    border: none;
+    outline: none !important;
+    margin-left: 10px;
 }
-.skill_level{
-    background: #8bc34a;
-    height: 10px;
+
+.administrativeAddModal .modal-footer{
+    display: block;
 }
+
+.administrativeAddModal .btn-secondary{
+    float: right;
+}
+
+.custom-checkbox{
+    position: relative;
+    margin-left: 5px;
+}
+
+.custom-checkbox input[type="checkbox"] {
+    opacity: 0;
+    position: absolute;
+    margin: 5px 0 0 3px;
+    z-index: 9;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 3px;
+    width: 6px;
+    height: 11px;
+    border: solid #000;
+    border-width: 0 3px 3px 0;
+    transform: inherit;
+    z-index: 3;
+    transform: rotateZ(45deg);
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:after {
+    border-color: #fff;
+}
+
+.custom-checkbox label:before {
+    content: '';
+    margin-right: 10px;
+    display: inline-block;
+    vertical-align: text-top;
+    background: white;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-sizing: border-box;
+    z-index: 2;
+    width: 18px;
+    height: 18px;
+}
+
+.custom-checkbox input[type="checkbox"]:checked + label:before {
+    border-color: #03A9F4;
+    background: #03A9F4;
+}
+
+
 
 /* 7  Project page */
-#bubblebox{
-    border-radius: 1%;
-    box-sizing: border-box;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-}
-#bubbles{
-    text-align:center;
-}
-#bubbles > div{
-    display:inline-block;
-    width:10px;
-    height:10px;
-    margin:24px 10px 0px 10px;
-    background:rgba(0,0,0,.1);
-    border:2px solid #999;
-    border-radius:100%;
-    font-size:17px;
-    text-decoration:none;
-    transition: background 0.3s linear 0s;
-    cursor:pointer;
-}
-#bubblecontent{
-    transition:opacity 0.3s linear 0s;
-    text-align: center;
-}
-
-#bubblecontent > h3{
-    padding-top: 1rem;
-    text-align:center;
-    color:#7EA800;
-}
-#bubblecontent > p{
-    padding-top: 1rem;
-    font-size:17px;
-    line-height:1.5em;
-}
 
 
 /* 8    Contact page */
-
-.text-contact {
-    margin-bottom: 1rem;
-    margin-top: 5rem;
-}
 
 label.error{
     border: none;
@@ -321,14 +306,7 @@ input[type=submit]:focus{
     background-color: #04177b;
     color: #fff !important;
     font-size: 14px;
-}
-
-.row{
-    margin-bottom: 2rem;
-}
-
-.col-md-4,.col-md-4 {
-    padding-top: 10px;
+    bottom: 0;
 }
 
 .my-foot-a{

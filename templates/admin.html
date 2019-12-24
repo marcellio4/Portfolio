@@ -1,32 +1,238 @@
-<main id="wrapper" role="main">
-  <section id="main_content">
-    <h1>[+header+]</h1>
-  </section>
-  <div>
-    [+Welcome+]
-  </div>
-  <section id="admin_body">
-    <form enctype="multipart/form-data" action="[+Actionlink+]" method="post">
-			<fieldset>
-			<legend>File Upload</legend>
-            <div>
-                <label for="fileinput">Upload an image:</label>
-				<!-- "name" of input (userfile) will be the "key" in $_FILES -->
-                <input name="userfile" type="file" id="fileinput" />
+<main class="container" role="main">
+    <section class="introduction">
+        <article>
+            <h1 class="text-center">Administrative</h1>
+        </article>
+        <article class="settings">
+            <div class="accordion" id="accordionExample">
+                <div class="card">
+                    <div class="card-header" id="headingOne">
+                        <div class="row">
+                            <div class="col-sm-10 collapse-header" data-toggle="collapse" data-target="#collapseOne"
+                                 aria-expanded="false" aria-controls="collapseOne">
+                                <h2 class="mb-0">Manage Story</h2>
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="#addStoryModal" class="btn btn-success" data-toggle="modal"><i
+                                        class="material-icons"></i> <span>Add New</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Select all<span class="custom-checkbox"><input type="checkbox"
+                                                                                                   id="selectAllStory"><label
+                                            for="selectAllStory"></label></span>
+                                    </th>
+                                    <th scope="col">Picture</th>
+                                    <th scope="col">Story</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>Delete, edit</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingTwo">
+                        <div class="row">
+                            <div class="col-sm-10 collapse-header" data-toggle="collapse" data-target="#collapseTwo"
+                                 aria-expanded="false" aria-controls="collapseTwo">
+                                <h2 class="mb-0">Manage Skills</h2>
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="#addSkillModal" class="btn btn-success" data-toggle="modal"><i
+                                        class="material-icons"></i> <span>Add New</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Select all<span class="custom-checkbox"><input type="checkbox"
+                                                                                                   id="selectAllSkills"><label
+                                            for="selectAllSkills"></label></span>
+                                    </th>
+                                    <th scope="col">Development</th>
+                                    <th scope="col">Language</th>
+                                    <th scope="col">Knowledge</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                    <td>Delete, edit</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header" id="headingThree">
+                        <div class="row">
+                            <div class="col-sm-10 collapse-header" data-toggle="collapse" data-target="#collapseThree"
+                                 aria-expanded="false" aria-controls="collapseThree">
+                                <h2 class="mb-0">Manage Projects</h2>
+                            </div>
+                            <div class="col-sm-2">
+                                <a href="#addProjectModal" class="btn btn-success" data-toggle="modal"><i
+                                        class="material-icons"></i> <span>Add New</span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                         data-parent="#accordionExample">
+                        <div class="card-body">
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th scope="col">Select all<span class="custom-checkbox"><input type="checkbox"
+                                                                                                   id="selectAllProjects"><label
+                                            for="selectAllProjects"></label></span>
+                                    </th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>Delete, edit</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </div>
-			<div>
-                <label for="title">Title:</label>
-                <input placeholder="Type title of your image here..." name="title" type="text" id="title" value="[+title+]"/>
+        </article>
+    </section>
+    <section class="administrativeAddModal">
+        <div class="modal fade" id="addProjectModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabelProject"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabelProject">Add New Project</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="px-4 py-3" id="addProjectForm" method="post" action="">
+                            <div class="form-group">
+                                <label for="projectName">Name of the Project</label>
+                                <input type="text" class="form-control" id="projectName" name="projectName" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="projectDesc">Description</label>
+                                <textarea class="form-control" id="projectDesc" name="projectDesc"
+                                          aria-describedby="descHelpBlock" required></textarea>
+                                <small id="descHelpBlock" class="form-text text-muted">
+                                    Please enter your account email.
+                                </small>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary addProject">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
-			<div>
-				<label for="msg">Description:</label>
-				<textarea placeholder="Type your description here..." name="description" id="msg" >[+description+]</textarea>
-			</div>
-            <div>
-                <input type="submit" value="Upload File" name="singlefileupload" />
+        </div>
+        <div class="modal fade" id="addSkillModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabelSkill"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabelSkill">Add New Skill</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="px-4 py-3" id="addSkillForm" method="post" action="">
+                            <div class="form-group">
+                                <label for="development">Development</label>
+                                <select name="development" class="custom-select" id="development" required>
+                                    <option value="">Please select</option>
+                                    <option value="Front-End">Front-End</option>
+                                    <option value="Back-End">Back-End</option>
+                                    <option value="database">Database</option>
+                                    <option value="sysAdmin">SysAdmin</option>
+                                    <option value="cms">CMS</option>
+                                </select></div>
+                            <div class="form-group">
+                                <label for="lang">Language</label>
+                                <input type="text" class="form-control" id="lang" name="lang" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="framework">Framework</label>
+                                <input type="text" class="form-control" id="framework" name="framework" placeholder="Optional">
+                            </div>
+                            <div class="form-group">
+                                <label for="knowledge">Knowledge</label>
+                                <input type="range" class="form-control-range" min="0.0" max="5.0" step="0.01" value="2.5" id="knowledge" name="knowledge" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary addSkill">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
-			</fieldset>
-        </form>
-		<span>[+message+]</span>
-  </section>
+        </div>
+        <div class="modal fade" id="addStoryModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabelStory"
+             aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="ModalLabelStory">Add New Project</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form class="px-4 py-3" id="addStoryForm" method="post" action="">
+                            <div class="form-group">
+                                <label for="story">Story</label>
+                                <textarea class="form-control" id="story" name="story" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="picture">Profile Picture</label>
+                                <input type="file" class="form-control-file" id="picture" name="picture" required>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary addProject">Add</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 </main>
