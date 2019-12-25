@@ -8,12 +8,14 @@ const jsonObject = obj => {
     }
 }
 
+const showVal = (id,newValue) => $(id).text(newValue);
 const removeErrors = () => $('label.error').remove();
 const focus_first_ele = () => $('.error:first').focus();
 const changeClass = (id, name, exchange) => {
     $(`#${id}`).removeClass(`${name}`);
     $(`#${id}`).addClass(`${exchange}`);
 }
+$('[data-toggle="tooltip"]').tooltip();
 
 const display_errors = obj => {
     removeErrors();
@@ -26,6 +28,7 @@ const display_errors = obj => {
 }
 
 $(document).ready(() => {
+
     // slide slow our navigation bar for mobiles
     $('body').on('.menu', 'click', () => {
         $('ul').slideToggle('slow', () => $('ul').toggleClass('active'))
@@ -115,9 +118,6 @@ $(document).ready(() => {
     $('body').on('click', '.resetPass', () => {
         $('#confirmPassword').validate({
             rules: {
-                mail: {
-                    required: true
-                },
                 password : {
                     required: true,
                     minlength : 6,
@@ -152,5 +152,36 @@ $(document).ready(() => {
         });
     })
 
+    showVal('.knowledgeValue', $('#editKnowledge').val())
+    showVal('.knowledgeValue', $('#knowledge').val())
 
+    // add Project
+    $('body').on('click', '.addProject', () => {
+        $('#addProjectForm').validate({
+            submitHandler: function (form) {
+                console.log(form.serialize());
+                return false;
+            }
+        });
+    })
+
+    // add Story
+    $('body').on('click', '.addStory', () => {
+        $('#addStoryForm').validate({
+            submitHandler: function (form) {
+                console.log(form.serialize());
+                return false;
+            }
+        });
+    })
+
+    // add Skills
+    $('body').on('click', '.addSkill', () => {
+        $('#addSkillForm').validate({
+            submitHandler: function (form) {
+                console.log(form.serialize());
+                return false;
+            }
+        });
+    })
 })// End of document listen

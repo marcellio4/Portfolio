@@ -239,9 +239,21 @@ nav.fill div ul li a:hover:after {
     background: #03A9F4;
 }
 
+/* Administrative page */
+.fa-trash{
+    color: red;
+}
 
+.fa-edit{
+    color: #FFC107;
+    margin-right: 10px;
+}
 
-/* 7  Project page */
+/*.settings .fa{*/
+/*    background-color: transparent;*/
+/*}*/
+
+    /* 7  Project page */
 
 
 /* 8    Contact page */
@@ -327,25 +339,8 @@ input[type=submit]:focus{
     font-size: 12px;
 }
 
-.fa {
-    padding: 10px;
-    font-size: 15px;
-    width: 35px;
-    text-align: center;
-    text-decoration: none;
-    border-radius: 50%;
-    float: none;
-    background-color: #fff;
-}
-
-.fa-github{
-    color: #000;
-}
-
-.fa:hover {
-    opacity: 0.7;
-    color: #000;
-    text-decoration: none;
+.fa-footer{
+    color: #fff;
 }
 
 
