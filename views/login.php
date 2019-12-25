@@ -26,5 +26,6 @@ if (isset($_POST['mail']) && $_POST['mail'] !== ''){
     }
     $name = $data[0]['Title'] . " " . substr($data[0]['Firstname'], 0, 1) . " " . $data[0]['Surname'];
     $_SESSION['login'] = $name;
+    $_SESSION['userID'] = $data[0]['ID'];
     die();
 }

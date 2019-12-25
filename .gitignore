@@ -7,3 +7,5 @@ sitemap.xml
 classes/Config.php
 Test/phpunit.phar
 .phpunit.result.cache
+images
+
