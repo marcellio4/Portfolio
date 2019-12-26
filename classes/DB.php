@@ -16,7 +16,7 @@ class DB
 	// The db connection is established in the private constructor.
 	private function __construct()
 	{
-	    $dsn = "mysql:host=" . Config::setDB('host') . ":3306; dbname=" . Config::setDB('name') . ";charset=utf8mb4";
+	    $dsn = "mysql:host=" . Config::setDB('host') . "; dbname=" . Config::setDB('name') . ";charset=utf8mb4";
 		try {
 			$this->conn = new PDO($dsn, Config::setDB('user'), Config::setDB('password'), $this->setAttributes);
 		} catch (\Exception $e) {
@@ -81,7 +81,7 @@ class DB
             }
             return false;
         } catch (PDOException $pdoex) {
-            return false;
+            return $pdoex->getMessage();
         }
 	}
     

@@ -8,7 +8,7 @@ const jsonObject = obj => {
     }
 }
 
-const showVal = (id,newValue) => $(id).text(newValue);
+const showVal = (id, newValue) => $(id).text(newValue);
 const removeErrors = () => $('label.error').remove();
 const focus_first_ele = () => $('.error:first').focus();
 const changeClass = (id, name, exchange) => {
@@ -28,7 +28,6 @@ const display_errors = obj => {
 }
 
 $(document).ready(() => {
-
     // slide slow our navigation bar for mobiles
     $('body').on('.menu', 'click', () => {
         $('ul').slideToggle('slow', () => $('ul').toggleClass('active'))
@@ -39,18 +38,6 @@ $(document).ready(() => {
         rules: {
             title: {
                 required: ($('#title').val() === '')
-            },
-            fname: {
-                required: true
-            },
-            sname: {
-                required: true
-            },
-            sub: {
-                required: true
-            },
-            msg: {
-                required: true
             },
             email: {
                 required: true,
@@ -82,7 +69,7 @@ $(document).ready(() => {
 
     // Login credential and form
     $('body').on('click', '.login', () => {
-       const loginForm = $('#loginForm').validate({
+        const loginForm = $('#loginForm').validate({
             rules: {
                 mail: {
                     required: true
@@ -118,16 +105,16 @@ $(document).ready(() => {
     $('body').on('click', '.resetPass', () => {
         $('#confirmPassword').validate({
             rules: {
-                password : {
+                password: {
                     required: true,
-                    minlength : 6,
+                    minlength: 6,
                     maxlength: 12
                 },
-                confirmPass : {
+                confirmPass: {
                     required: true,
-                    minlength : 6,
+                    minlength: 6,
                     maxlength: 12,
-                    equalTo : "#password"
+                    equalTo: "#password"
                 }
             },
             submitHandler: function (form) {
@@ -136,7 +123,6 @@ $(document).ready(() => {
                     type: form.method,
                     data: $(form).serialize(),
                     success: function (data) {
-                        console.log(data)
                         if (jsonObject(data)) {
                             display_errors(data);
                             return false;
@@ -159,7 +145,17 @@ $(document).ready(() => {
     $('body').on('click', '.addProject', () => {
         $('#addProjectForm').validate({
             submitHandler: function (form) {
-                console.log(form.serialize());
+                $.ajax({
+                    url: 'index.php?page=admin',
+                    type: form.method,
+                    data: $(form).serialize(),
+                    success: data => {
+                        console.log(data)
+                    },
+                    error: data => {
+                        console.log(data)
+                    }
+                })
                 return false;
             }
         });
@@ -169,7 +165,23 @@ $(document).ready(() => {
     $('body').on('click', '.addStory', () => {
         $('#addStoryForm').validate({
             submitHandler: function (form) {
-                console.log(form.serialize());
+                $.ajax({
+                    url: 'index.php?page=admin',
+                    type: form.method,
+                    data: new FormData($(form)[0]),
+                    contentType: false,
+                    processData: false,
+                    success: data => {
+                        if (jsonObject(data)) {
+                            display_errors(data);
+                            return false;
+                        }
+                        window.location.reload();
+                    },
+                    error: data => {
+                        console.log(data)
+                    }
+                })
                 return false;
             }
         });
@@ -179,7 +191,21 @@ $(document).ready(() => {
     $('body').on('click', '.addSkill', () => {
         $('#addSkillForm').validate({
             submitHandler: function (form) {
-                console.log(form.serialize());
+                $.ajax({
+                    url: 'index.php?page=admin',
+                    type: form.method,
+                    data: $(form).serialize(),
+                    success: data => {
+                        if (jsonObject(data)) {
+                            display_errors(data);
+                            return false;
+                        }
+                       window.location.reload();
+                    },
+                    error: data => {
+                        console.log(data)
+                    }
+                })
                 return false;
             }
         });
