@@ -123,5 +123,12 @@ class File {
         $this->errors[$key] = 'The file size is too large. Only file under 1MB can be upload.';
         return false;
     }
+    
+    /**
+     * @return mixed
+     */
+    public function getImage() {
+        return $this->image;
+    }
 }
 

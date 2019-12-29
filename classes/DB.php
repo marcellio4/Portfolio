@@ -112,7 +112,7 @@ class DB
      * @return bool
      */
     public function delete($table, $id) {
-        $stmt = $this->conn->prepare("DELETE FROM myTable WHERE id = ?");
+        $stmt = $this->conn->prepare("DELETE FROM $table WHERE ID = ?");
         return $stmt->execute([$id]);
 	}
     
@@ -138,6 +138,10 @@ class DB
         $query = "UPDATE " . $table . " SET " . $set . " WHERE ID = " . $id;
         $stmt = $this->conn->prepare($query);
         return $stmt->execute($values);
+	}
+    
+    public function getLastID() {
+        return $this->conn->lastInsertId();
 	}
 	
 }

@@ -27,14 +27,14 @@ font style
 /* 2
 RESET
 */
-html, body, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, figure, figcaption, form, fieldset, label, legend, dl, dt, dd, table, td, th, caption {
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
-}
-ul, ol {
-    list-style-type: none;
-}
+/*html, body, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, figure, figcaption, form, fieldset, label, legend, dl, dt, dd, table, td, th, caption {*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-size: 100%;*/
+/*}*/
+/*ul, ol {*/
+/*    list-style-type: none;*/
+/*}*/
 
 /* Sane Default */
 body{
@@ -43,10 +43,7 @@ body{
 section, article, header, footer, nav, aside, main {
     display: block;
 }
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
-    font-family: 'Ubuntu', Georgia, serif;
-}
+
 
 .name{
     margin-right: 3rem;
@@ -55,6 +52,12 @@ h1, h2, h3, h4, h5, h6 {
 article.settings {
     margin-top: 1.75rem;
 }
+
+main > .container{
+    padding: 60px 15px 0;
+}
+
+
 
 /* 3 Main navigation */
 /* underline animation under links #331a00 */
@@ -158,8 +161,17 @@ nav.fill div ul li a:hover:after {
 }
 
 .introduction{
-    margin-top: 6em;
-    margin-bottom: 6em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.custom-story{
+    background-color: transparent;
+    margin: 3rem 0rem;
+    padding: 15px;
+    border-radius: 10px;
+}
+.media > img{
+    height: 10rem;
 }
 
 /* 6 Skills page */

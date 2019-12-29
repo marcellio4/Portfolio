@@ -33,6 +33,8 @@ $(document).ready(() => {
         $('ul').slideToggle('slow', () => $('ul').toggleClass('active'))
     })
 
+    //delete a href for story in administrative page
+    $('#collapseOne').find('a.delete').remove();
     // Submit contact form
     const contactForm = $("#form").validate({
         rules: {
@@ -145,12 +147,19 @@ $(document).ready(() => {
     $('body').on('click', '.addProject', () => {
         $('#addProjectForm').validate({
             submitHandler: function (form) {
+                let data = {};
+                $(form).serializeArray().map(x => data[x.name] = x.value)
+                const obj = {
+                    projects: data,
+                    action: 'add'
+                }
                 $.ajax({
-                    url: 'index.php?page=admin',
+                    url: 'index.php?page=action',
                     type: form.method,
-                    data: $(form).serialize(),
+                    data: obj,
                     success: data => {
                         console.log(data)
+                        window.location.reload()
                     },
                     error: data => {
                         console.log(data)
@@ -165,10 +174,12 @@ $(document).ready(() => {
     $('body').on('click', '.addStory', () => {
         $('#addStoryForm').validate({
             submitHandler: function (form) {
+                let fd = new FormData($(form)[0]);
+                fd.append('action', 'add');
                 $.ajax({
-                    url: 'index.php?page=admin',
+                    url: 'index.php?page=action',
                     type: form.method,
-                    data: new FormData($(form)[0]),
+                    data: fd,
                     contentType: false,
                     processData: false,
                     success: data => {
@@ -191,16 +202,22 @@ $(document).ready(() => {
     $('body').on('click', '.addSkill', () => {
         $('#addSkillForm').validate({
             submitHandler: function (form) {
+                let data = {};
+                $(form).serializeArray().map(x => data[x.name] = x.value)
+                const obj = {
+                    skills: data,
+                    action: 'add'
+                }
                 $.ajax({
-                    url: 'index.php?page=admin',
+                    url: 'index.php?page=action',
                     type: form.method,
-                    data: $(form).serialize(),
+                    data: obj,
                     success: data => {
                         if (jsonObject(data)) {
                             display_errors(data);
                             return false;
                         }
-                       window.location.reload();
+                        window.location.reload();
                     },
                     error: data => {
                         console.log(data)
@@ -210,4 +227,190 @@ $(document).ready(() => {
             }
         });
     })
+
+    // edit Project
+    $('.edit').click(function () {
+        let id = $(this).data('id');
+        $('#editProjectModal').find('button.editProject').attr('data-id', id);
+    })
+    $('body').on('click', '.editProject', () => {
+        $('#editProjectForm').validate({
+            submitHandler: function (form) {
+                let data = {};
+                $(form).serializeArray().map(x => data[x.name] = x.value)
+                const obj = {
+                    projects: data,
+                    id: $('#editProjectModal').find('button.editProject').attr('data-id'),
+                    action: 'edit'
+                }
+                $.ajax({
+                    url: 'index.php?page=action',
+                    type: form.method,
+                    data: obj,
+                    success: data => {
+                        console.log(data);
+                        if (jsonObject(data)) {
+                            display_errors(data);
+                            return false;
+                        }
+                        window.location.reload();
+                    },
+                    error: data => {
+                        console.log(data)
+                    }
+                })
+                return false;
+            }
+        });
+    })
+
+    // edit Story
+    $('.edit').click(function () {
+        let id = $(this).data('id');
+        $('#editStoryModal').find('button.editStory').attr('data-id', id);
+    })
+    $('body').on('click', '.editStory', () => {
+
+        $('#editStoryForm').validate({
+            submitHandler: function (form) {
+                let id = $('#editStoryModal').find('button.editStory').attr('data-id'),
+                fd = new FormData($(form)[0]);
+                fd.append('action', 'edit');
+                fd.append('id', id.toString());
+                $.ajax({
+                    url: 'index.php?page=action',
+                    type: form.method,
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: data => {
+                        if (jsonObject(data)) {
+                            display_errors(data);
+                            return false;
+                        }
+                        window.location.reload();
+                    },
+                    error: data => {
+                        console.log(data)
+                    }
+                })
+                return false;
+            }
+        });
+    })
+
+    // edit Skills
+    $('.edit').click(function () {
+        let id = $(this).data('id');
+        $('#editSkillsModal').find('button.editSkill').attr('data-id', id);
+    })
+    $('body').on('click', '.editSkill', () => {
+        $('#editSkillForm').validate({
+            submitHandler: function (form) {
+                let data = {};
+                $(form).serializeArray().map(x => data[x.name] = x.value)
+                const obj = {
+                    skills: data,
+                    id: $('#editSkillsModal').find('button.editSkill').attr('data-id'),
+                    action: 'edit'
+                }
+                $.ajax({
+                    url: 'index.php?page=action',
+                    type: form.method,
+                    data: obj,
+                    success: data => {
+                        if (jsonObject(data)) {
+                            display_errors(data);
+                            return false;
+                        }
+                        window.location.reload();
+                    },
+                    error: data => {
+                        console.log(data)
+                    }
+                })
+                return false;
+            }
+        });
+    })
+
+    // delete Project
+    $('.delete').click(function () {
+        let id = $(this).data('id');
+        $('#deleteProjectModal').find('button.deleteProject').attr('data-id', id);
+    })
+    $('body').on('click', '.deleteProject', () => {
+        const obj = {
+            projects: 'delete',
+            id: $('#deleteProjectModal').find('button.deleteProject').attr('data-id'),
+            action: 'delete'
+        }
+        $.ajax({
+            url: 'index.php?page=action',
+            type: 'post',
+            data: obj,
+            success: data => {
+                console.log(data)
+                window.location.reload();
+            },
+            error: data => {
+                console.log(data)
+            }
+        })
+    })
+
+    // delete Story
+    // $('.delete').click(function () {
+    //     let id = $(this).data('id');
+    //     $('#deleteStoryModal').find('button.deleteStory').attr('data-id', id);
+    // })
+    // $('body').on('click', '.deleteStory', () => {
+    //     let fd = {
+    //         action: 'delete',
+    //         story: 'story',
+    //         id: $('#deleteStoryModal').find('button.deleteStory').attr('data-id'),
+    //     };
+    //     $.ajax({
+    //         url: 'index.php?page=action',
+    //         type: 'post',
+    //         data: fd,
+    //         success: data => {
+    //             console.log(data)
+    //             return false;
+    //             if (jsonObject(data)) {
+    //                 display_errors(data);
+    //                 return false;
+    //             }
+    //             window.location.reload();
+    //         },
+    //         error: data => {
+    //             console.log(data)
+    //         }
+    //     })
+    // })
+
+//delete Skills
+    $('.delete').click(function () {
+        let id = $(this).data('id');
+        $('#deleteSkillModal').find('button.deleteSkill').attr('data-id', id);
+    })
+    $('body').on('click', '.deleteSkill', () => {
+        const obj = {
+            skills: 'delete',
+            id: $('#deleteSkillModal').find('button.deleteSkill').attr('data-id'),
+            action: 'delete'
+        }
+        $.ajax({
+            url: 'index.php?page=action',
+            type: 'post',
+            data: obj,
+            success: data => {
+                window.location.reload();
+            },
+            error: data => {
+                console.log(data)
+            }
+        })
+    })
+
 })// End of document listen

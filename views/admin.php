@@ -5,44 +5,6 @@ if (!isset($_SESSION['login'])) {
     redirectPage('index.php');
 }
 
-if (isset($_POST['story'])) {
-    $story = clean_str($_POST['story']);
-    $picture = $_FILES['picture'];
-    $file = new File();
-    $file->setFileProperties($picture);
-    if (empty($file->getErrors())) {
-        if ($file->checkSize('picture') && $file->isImage('picture') && $file->saveUploadImg('picture', 'images/db_portfolio/')) {
-            DB::getInstance()->create('information', array(
-                'UserID' => $_SESSION['userID'],
-                'Story' => $story,
-                'Image' => $picture['name']
-            ));
-        }
-    }
-    echo json_encode($file->getErrors());
-    die();
-}
-
-if (isset($_POST['development'])) {
-    $dev = clean_str($_POST['development']);
-    $lang = clean_str($_POST['lang']);
-    $framework = ($_POST['framework'] !== '') ? clean_str($_POST['framework']) : null;
-    $knowledge = clean_str($_POST['knowledge']);
-    $validation = new Validation();
-    $validation->isEmpty('development', $dev);
-    if ($validation->hasWhitespace($lang) || !$validation->hasSpecialCharacters('', $lang)) {
-        echo json_encode(array('lang' => 'Only one word can be used. example(PHP)'));
-        die();
-    }
-    DB::getInstance()->create('skills', array(
-        'UserID' => $_SESSION['userID'],
-        'Development' => $dev,
-        'Language' => $lang,
-        'Framework' => $framework,
-        'Knowledge' => $knowledge
-    ));
-    die();
-}
 /*
 -------------Import templates --------------
 */
@@ -71,20 +33,28 @@ $final = parseTemplate($tpl_a, array(
 $add = "<a href=\"#addStoryModal\" id=\"addStoryButton\" data-story=\"false\" class=\"btn btn-success\" data-toggle=\"modal\"><i
                                         class=\"material-icons\"></i> <span>Add New</span></a>";
 $disable = "<button type=\"button\" class=\"btn btn-danger\" disabled>Disable</button>";
-$queryStory = "select Id, Story, Image from information where UserID = ?";
+$queryStory = "select ID, Story, Image from information where UserID = ?";
 $dataStory = DB::getInstance()->find($queryStory, array($_SESSION['userID']));
-$querySkills = "select Id, Development, Language, Framework, Knowledge from skills where UserID = ?";
+$querySkills = "select ID, Development, Language, Framework, Knowledge from skills where UserID = ?";
 $dataSkills = DB::getInstance()->find($querySkills, array($_SESSION['userID']));
+$queryProjects = "select ID, Name, Description from projects where UserID = ?";
+$dataProjects = DB::getInstance()->find($queryProjects, array($_SESSION['userID']));
+$msg = '';
+if (isset($_SESSION['msg-success'])){
+    $msg = $_SESSION['msg-success'];
+    unset($_SESSION['msg-success']);
+}
 
-//echo '<pre>';
-//print_r($dataSkills[0]);
-//echo '</pre>';
-//die();
-
+if (isset($_SESSION['msg-error'])){
+    $msg = $_SESSION['msg-error'];
+    unset($_SESSION['msg-error']);
+}
 $final .= parseTemplate($tpl_b, array(
+    '[+msg+]' => $msg,
     '[+story+]' => (empty($dataStory)) ? $add : $disable,
     '[+storyRows+]' => produceRow(count($dataStory), $dataStory, '<tr>', 0, 'editStoryModal', 'deleteStoryModal'),
-    '[+skillsRows+]' => produceRow(count($dataSkills), $dataSkills, '<tr>', 0, 'editSkillsModal', 'deleteSkillModal')
+    '[+skillsRows+]' => produceRow(count($dataSkills), $dataSkills, '<tr>', 0, 'editSkillsModal', 'deleteSkillModal'),
+    '[+projectRows+]' => produceRow(count($dataProjects), $dataProjects, '<tr>', 0, 'editProjectModal', 'deleteProjectModal')
 ));
 $final .= parseTemplate($tpl_c, array('[+date+]' => get_year()));
 

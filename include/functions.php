@@ -27,6 +27,9 @@ function pages($id_page) {
         case 'reset':
             return include 'views/reset.php';
             break;
+        case 'action':
+            return include 'views/action.php';
+            break;
         default         :
             return include 'views/404.php';
     }
@@ -99,16 +102,22 @@ function produceRow($count, $arr, $data, $start, $editID, $deleteID) {
         if (is_array($val)) {
             return produceRow($count, $val, $data, 0, $editID, $deleteID);
         }
+        if ($node === 'ID'){
+            $id = $val;
+            $data .= "<td>" . ($i + 1) . "</td>";
+            continue;
+        }
         $data .= "<td>$val</td>";
     }
+    $i++;
     $data .= "<td>
-                <a href=\"#$editID\" data-toggle=\"modal\" class=\"edit\"><i
+                <a href=\"#$editID\" data-toggle=\"modal\" class=\"edit\" data-id=\"$id\"><i
                 class=\"fas fa-edit\" data-toggle=\"tooltip\" data-placement=\"top\"
                 title=\"edit\"></i></a>
-                <a href=\"#$deleteID\" data-toggle=\"modal\" class=\"delete\"><i
+                <a href=\"#$deleteID\" data-toggle=\"modal\" class=\"delete\" data-id=\"$id\"><i
                 class=\"fas fa-trash\" data-toggle=\"tooltip\" data-placement=\"top\"
                 title=\"delete\"></i></a>
             </td>";
     $data .= '</tr>';
-    return produceRow($count - 1, $arr, $data, $i + 1, $editID, $deleteID);
+    return produceRow($count - 1, $arr, $data, $i, $editID, $deleteID);
 }

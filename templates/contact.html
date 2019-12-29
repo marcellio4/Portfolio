@@ -1,54 +1,57 @@
-<main class="container" role="main">
-    <section class="introduction">
-        <article class="text-contact">
-            <h1 class="text-center my-set-header">Contact me</h1>
-            <h2>Please leave me a message for your project.</h2>
-            <p>Write your requirements in message body as close at possible what you want to achieve in your
-                project.</p>
-            <span class="submit-message">[+confirm_message+]</span>
-        </article>
-        <article>
-            <form id="form" method='post' action="">
-                <fieldset>
-                    <div class="form-row">
-                        <div class="form-group col-md-2">
-                            <label for="title">Title:</label>
-                            <select name="title" class="custom-select" id="title" required>
-                                <option value="">Please select</option>
-                                <option value="Mr">Mr</option>
-                                <option value="Mrs">Mrs</option>
-                                <option value="Miss">Miss</option>
-                                <option value="Ms">Ms</option>
-                            </select>
+<main role="main">
+    <div class="container">
+        <section class="introduction">
+            <article class="text-contact">
+                <h1 class="text-center my-set-header">Contact me</h1>
+                <h2>Please leave me a message for your project.</h2>
+                <p>Write your requirements in message body as close at possible what you want to achieve in your
+                    project.</p>
+                <span class="submit-message">[+confirm_message+]</span>
+            </article>
+            <article>
+                <form id="form" method='post' action="">
+                    <fieldset>
+                        <div class="form-row">
+                            <div class="form-group col-md-2">
+                                <label for="title">Title:</label>
+                                <select name="title" class="custom-select" id="title" required>
+                                    <option value="">Please select</option>
+                                    <option value="Mr">Mr</option>
+                                    <option value="Mrs">Mrs</option>
+                                    <option value="Miss">Miss</option>
+                                    <option value="Ms">Ms</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="fname">First Name:</label>
+                                <input type="text" class="form-control" placeholder="Your First Name" name="fname"
+                                       id="fname" required>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="sname">Last Name:</label>
+                                <input type="text" class="form-control" placeholder="Your Last Name" name="sname"
+                                       id="sname"
+                                       required>
+                            </div>
                         </div>
-                        <div class="form-group col-md-5">
-                            <label for="fname">First Name:</label>
-                            <input type="text" class="form-control" placeholder="Your First Name" name="fname"
-                                   id="fname" required>
+                        <div class="form-group">
+                            <label for="email">E-mail:</label>
+                            <input type="email" class="form-control" name="email" id="email"
+                                   placeholder="Your full email address" required>
                         </div>
-                        <div class="form-group col-md-5">
-                            <label for="sname">Last Name:</label>
-                            <input type="text" class="form-control" placeholder="Your Last Name" name="sname" id="sname"
-                                   required>
+                        <div class="form-group">
+                            <label for="sub">Subject:</label>
+                            <input type="text" class="form-control" name="sub" id="sub" placeholder="Subject" required>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">E-mail:</label>
-                        <input type="email" class="form-control" name="email" id="email"
-                               placeholder="Your full email address" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="sub">Subject:</label>
-                        <input type="text" class="form-control" name="sub" id="sub" placeholder="Subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="msg">Message:</label>
-                        <textarea placeholder="Type your message here..." class="form-control" name="msg" id="msg"
-                                  required></textarea>
-                    </div>
-                    <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Submit">
-                </fieldset>
-            </form>
-        </article>
-    </section>
+                        <div class="form-group">
+                            <label for="msg">Message:</label>
+                            <textarea placeholder="Type your message here..." class="form-control" name="msg" id="msg"
+                                      required></textarea>
+                        </div>
+                        <input type="submit" class="btn btn-primary" id="submit" name="submit" value="Submit">
+                    </fieldset>
+                </form>
+            </article>
+        </section>
+    </div>
 </main>

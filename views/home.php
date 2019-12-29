@@ -1,5 +1,6 @@
 <?php
-
+// auto load classes
+spl_autoload_register('myAutoloader');
 /*
 -------------Import templates --------------
 */
@@ -30,7 +31,13 @@ $final  = parseTemplate($tpl_a, array(
 	'[+button+]' => $button,
 	'[+modal+]' => $modal
 ));
-$final .= $tpl_b;
+$data = DB::getInstance()->find('Select Image, Story from information where ID = ?', array(1));
+$img = 'images/db_portfolio/' . $data[0]['Image'];
+$story = htmlspecialchars_decode($data[0]['Story']);
+$final .= parseTemplate($tpl_b, array(
+    '[+img+]' => $img,
+    '[+story+]' => $story
+));
 $final .= parseTemplate($tpl_c, array('[+date+]' => get_year()));
 
 //display our template file with all placeholders
