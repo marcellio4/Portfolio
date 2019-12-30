@@ -17,19 +17,19 @@ $tpl_a = file_get_contents($head);
 $tpl_b = file_get_contents($body);
 $tpl_c = file_get_contents($foot);
 
-if (isset($_SESSION['login'])){
-	$tpl_logout = parseTemplate($logout, array('[+username+]' => $_SESSION['login']));
+if (isset($_SESSION['login'])) {
+    $tpl_logout = parseTemplate($logout, array('[+username+]' => $_SESSION['login']));
     $button = $tpl_logout;
-	$modal = '';
-}else{
-	$button = $login_button;
-	$modal = $loginWidget;
+    $modal = '';
+} else {
+    $button = $login_button;
+    $modal = $loginWidget;
 }
 
 //build up our header HTML with function text_body
-$final  = parseTemplate($tpl_a, array(
-	'[+button+]' => $button,
-	'[+modal+]' => $modal
+$final = parseTemplate($tpl_a, array(
+    '[+button+]' => $button,
+    '[+modal+]' => $modal
 ));
 $data = DB::getInstance()->find('Select Image, Story from information where ID = ?', array(1));
 $img = 'images/db_portfolio/' . $data[0]['Image'];
@@ -43,3 +43,5 @@ $final .= parseTemplate($tpl_c, array('[+date+]' => get_year()));
 //display our template file with all placeholders
 $content = $final;
 echo $content;
+
+

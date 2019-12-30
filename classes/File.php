@@ -130,5 +130,50 @@ class File {
     public function getImage() {
         return $this->image;
     }
+    
+    /**
+     * @param string $user
+     * @throws Exception
+     */
+    public function startCSV($user) {
+        $handle = fopen('media/skills.csv', 'w');
+        if ($handle === false) {
+            throw new Exception('Could not open skills data file.');
+        }
+        fputcsv($handle, array('id', 'value', 'color'));
+        fputcsv($handle, array($user));
+        fclose($handle);
+    }
+    
+    /**
+     * @param string $user
+     * @param string $development
+     * @param array $data
+     * @throws Exception
+     */
+    public function writeCSV($user, $development, $data) {
+        if (empty($data)){
+            return;
+        }
+        $handle = fopen('media/skills.csv', 'a');
+        if ($handle === false) {
+            throw new Exception('Could not open skills data file.');
+        }
+        fputcsv($handle, array("$user.$development"));
+        $flag = true;
+        foreach ($data as $key => $value) {
+            if (!empty($value['Framework'])) {
+                if ($flag) {
+                    fputcsv($handle, array("$user.$development." . html_entity_decode($value['Language'])));
+                    $flag = false;
+                }
+                fputcsv($handle, array("$user.$development." . html_entity_decode($value['Language']) . "." . html_entity_decode($value['Framework']), $value['Knowledge'], "#" . $value['Color']));
+                continue;
+            }
+            $flag = true;
+            fputcsv($handle, array("$user.$development." . html_entity_decode($value['Language']), html_entity_decode($value['Knowledge']), "#" . $value['Color']));
+        }
+        fclose($handle);
+    }
 }
 

@@ -14,7 +14,7 @@ if (isset($_POST['mail']) && $_POST['mail'] !== ''){
     $login = new Login();
     $login->email('mail', $username);
     $condition = "email = '$username'";
-    $data = DB::getInstance()->findAll("User", $condition);
+    $data = DB::getInstance()->findAll("user", $condition);
     $hash = $data[0]['Password'];
     if(! $login->verify($password, $hash)){
         $login->addToErrorArr('pass', "Incorrect password");

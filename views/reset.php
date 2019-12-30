@@ -25,7 +25,7 @@ if (isset($_POST['password'])) {
     $password = clean_str($_POST['password']);
     $confirmPassword = clean_str($_POST['confirmPass']);
     $user = clean_str($_POST['mail']);
-    $query = "SELECT ID FROM User where email = ?";
+    $query = "SELECT ID FROM user where email = ?";
     $data = DB::getInstance()->find($query, array($user));
     if (empty($data)) {
         $validation->addToErrorArr('mail', 'Incorrect user email.');
@@ -40,7 +40,7 @@ if (isset($_POST['password'])) {
     if (!$validation->isErrorsDetected()) {
         $id = $data[0]['ID'];
         $hash = $validation->hash($password);
-        DB::getInstance()->save('User', $id, array('Password' => $hash));
+        DB::getInstance()->save('user', $id, array('Password' => $hash));
         $_SESSION['resetPassword'] = '<p class="message">Thank you, your password has been successfully reset.</p>';
         die();
     }

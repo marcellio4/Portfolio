@@ -68,6 +68,7 @@ if (isset($_POST['skills'])) {
     $lang = clean_str($_POST['skills']['lang']);
     $framework = ($_POST['skills']['framework'] !== '') ? clean_str($_POST['skills']['framework']) : null;
     $knowledge = clean_str($_POST['skills']['knowledge']);
+    $color = substr($_POST['skills']['color'], 1, 6);
     switch ($_POST['action']) {
         case 'add':
             $validation->isEmpty('development', $dev);
@@ -85,7 +86,8 @@ if (isset($_POST['skills'])) {
                 'Development' => $dev,
                 'Language' => $lang,
                 'Framework' => $framework,
-                'Knowledge' => $knowledge
+                'Knowledge' => $knowledge,
+                'Color' => $color
             ));
             break;
         case 'edit':
@@ -104,7 +106,8 @@ if (isset($_POST['skills'])) {
                 'Development' => $dev,
                 'Language' => $lang,
                 'Framework' => $framework,
-                'Knowledge' => $knowledge
+                'Knowledge' => $knowledge,
+                'Color' => $color
             ));
             break;
         default:

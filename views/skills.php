@@ -30,8 +30,7 @@ $final  = parseTemplate($tpl_a, array(
     '[+modal+]' => $modal
 ));
 $final .= $tpl_b;
-$final .= parseTemplate($tpl_c,array('[+date+]' => get_year(),
-                                    ));
+$final .= parseTemplate($tpl_c,array('[+date+]' => get_year()));
 
 //display our template file with all placeholders
 $content = $final;

@@ -30,6 +30,9 @@ function pages($id_page) {
         case 'action':
             return include 'views/action.php';
             break;
+        case 'update':
+            return include 'views/update.php';
+            break;
         default         :
             return include 'views/404.php';
     }
