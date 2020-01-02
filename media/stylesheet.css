@@ -27,11 +27,11 @@ font style
 /* 2
 RESET
 */
-/*html, body, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, figure, figcaption, form, fieldset, label, legend, dl, dt, dd, table, td, th, caption {*/
-/*    margin: 0;*/
-/*    padding: 0;*/
-/*    font-size: 100%;*/
-/*}*/
+html, body, h1, h2, h3, h4, h5, h6, p, blockquote, ol, ul, li, figure, figcaption, form, fieldset, label, legend, dl, dt, dd, table, td, th, caption {
+    margin: 0;
+    padding: 0;
+    /*font-size: 100%;*/
+}
 /*ul, ol {*/
 /*    list-style-type: none;*/
 /*}*/
@@ -311,7 +311,6 @@ text {
     background: #03A9F4;
 }
 
-/* Administrative page */
 .fa-trash{
     color: red;
 }
@@ -321,12 +320,10 @@ text {
     margin-right: 10px;
 }
 
-/*.settings .fa{*/
-/*    background-color: transparent;*/
-/*}*/
-
-    /* 7  Project page */
-
+/* 7  Project page */
+.projects a{
+    margin: 10px 0px;
+}
 
 /* 8    Contact page */
 
@@ -338,7 +335,7 @@ label.error{
 .error{
     color:red;
     border: 1px solid;
-    box-shadow: 1px 1px;
+    box-shadow: 1px 1px 4px;
 }
 
 .custom-select.error{
@@ -454,6 +451,12 @@ Responsive
 
     p.message-error {
         width: 100%;
+    }
+    .login-btn{
+        display: none;
+    }
+    .custom-story > .media{
+        display: block;
     }
 }
 

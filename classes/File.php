@@ -157,20 +157,24 @@ class File {
         }
         $handle = fopen('media/skills.csv', 'a');
         if ($handle === false) {
-            throw new Exception('Could not open skills data file.');
+            throw new Exception('Could not open the file.');
         }
         fputcsv($handle, array("$user.$development"));
         $flag = true;
+        $tempVal = '';
         foreach ($data as $key => $value) {
             if (!empty($value['Framework'])) {
+                if($tempVal !== $value['Language']){
+                   $flag = true;
+                }
                 if ($flag) {
                     fputcsv($handle, array("$user.$development." . html_entity_decode($value['Language'])));
                     $flag = false;
+                    $tempVal = $value['Language'];
                 }
                 fputcsv($handle, array("$user.$development." . html_entity_decode($value['Language']) . "." . html_entity_decode($value['Framework']), $value['Knowledge'], "#" . $value['Color']));
                 continue;
             }
-            $flag = true;
             fputcsv($handle, array("$user.$development." . html_entity_decode($value['Language']), html_entity_decode($value['Knowledge']), "#" . $value['Color']));
         }
         fclose($handle);

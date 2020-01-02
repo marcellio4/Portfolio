@@ -12,7 +12,7 @@
                             <div class="row">
                                 <div class="col-sm-10 collapse-header" data-toggle="collapse" data-target="#collapseOne"
                                      aria-expanded="false" aria-controls="collapseOne">
-                                    <h2 class="mb-0">Manage Story</h2>
+                                    <h2 class="mb-0 font-weight-normal">Manage Story</h2>
                                 </div>
                                 <div class="col-sm-2">
                                     [+story+]
@@ -43,7 +43,7 @@
                             <div class="row">
                                 <div class="col-sm-10 collapse-header" data-toggle="collapse" data-target="#collapseTwo"
                                      aria-expanded="false" aria-controls="collapseTwo">
-                                    <h2 class="mb-0">Manage Skills</h2>
+                                    <h2 class="mb-0 font-weight-normal">Manage Skills</h2>
                                 </div>
                                 <div class="col-sm-2">
                                     <a href="#addSkillModal" class="btn btn-success" data-toggle="modal"><i
@@ -78,7 +78,7 @@
                                 <div class="col-sm-10 collapse-header" data-toggle="collapse"
                                      data-target="#collapseThree"
                                      aria-expanded="false" aria-controls="collapseThree">
-                                    <h2 class="mb-0">Manage Projects</h2>
+                                    <h2 class="mb-0 font-weight-normal">Manage Projects</h2>
                                 </div>
                                 <div class="col-sm-2">
                                     <a href="#addProjectModal" class="btn btn-success" data-toggle="modal"><i
@@ -95,6 +95,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Description</th>
+                                        <th scope="col">Url Link</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                     </thead>
@@ -123,8 +124,7 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="projectName">Name of the Project</label>
-                                    <input type="text" class="form-control" id="projectName" name="projectName"
-                                           required>
+                                    <input type="text" class="form-control" id="projectName" name="projectName" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="projectDesc">Description</label>
@@ -133,6 +133,10 @@
                                     <small id="descHelpBlock" class="form-text text-muted">
                                         Please enter short description of your project.
                                     </small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="url">Url Link</label>
+                                    <input class="form-control" id="url" name="url"  placeholder="https://example.com" required>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -169,7 +173,7 @@
                                     <label for="lang">Language</label>
                                     <input type="text" class="form-control" id="lang" name="lang" required>
                                     <small id="langHelpBlock" class="form-text text-muted">
-                                        Please enter one language at the time example(JAVA).
+                                        If you want to add the same language you need to add framework with it.
                                     </small>
                                 </div>
                                 <div class="form-group">
@@ -184,6 +188,9 @@
                                            oninput="showVal('.knowledgeValue', this.value)"
                                            onchange="showVal('.knowledgeValue', this.value)">
                                     <span class="knowledgeValue"></span>
+                                    <small id="knowledgeHelpBlock" class="form-text text-muted">
+                                        Basic 1.0, Alright 2.0, Handy 3.0, Expert 4.0, Guru 5.0
+                                    </small>
                                 </div>
                                 <div class="form-group">
                                     <label for="color">Choose color</label>
@@ -242,16 +249,21 @@
                             <div class="modal-body">
                                 <div class="form-group">
                                     <label for="editProjectName">Name of the Project</label>
-                                    <input type="text" class="form-control" id="editProjectName" name="projectName">
+                                    <input type="text" class="form-control" id="editProjectName" name="projectName" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="editProjectDesc">Description</label>
                                     <textarea class="form-control" id="editProjectDesc" name="projectDesc"
-                                              aria-describedby="descHelpBlock"></textarea>
+                                              aria-describedby="descHelpBlock" required></textarea>
                                     <small id="editDescHelpBlock" class="form-text text-muted">
                                         Please provide short description of the project.
                                     </small>
                                 </div>
+                                <div class="form-group">
+                                    <label for="editUrl">Url Link</label>
+                                    <input class="form-control" id="editUrl" name="url"  placeholder="https://example.com" required>
+                                </div>
+
                             </div>
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-info editProject">Edit</button>
@@ -285,8 +297,8 @@
                                         <option value="cms">CMS</option>
                                     </select></div>
                                 <div class="form-group">
-                                    <label for="editLang">Language</label>
-                                    <input type="text" class="form-control" id="editLang" name="lang" required>
+                                    <label for="editLanguage">Language</label>
+                                    <input type="text" class="form-control" id="editLanguage" name="lang" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="editFramework">Framework</label>
@@ -295,7 +307,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="editKnowledge">Knowledge</label>
-                                    <input type="range" class="form-control-range" min="0.0" max="5.0" step="0.01"
+                                    <input type="range" class="custom-range" min="0.0" max="5.0" step="0.01"
                                            value="2.5" id="editKnowledge" name="knowledge"
                                            oninput="showVal('.knowledgeValue', this.value)"
                                            onchange="showVal('.knowledgeValue', this.value)">

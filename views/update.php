@@ -7,11 +7,11 @@ if(isset($_POST['name']) && $_POST['name'] === 'update'){
         $user = DB::getInstance()->find("select Firstname from user where ID = ?", array($_SESSION['userID']));
         $file->startCSV($user[0]['Firstname']);
         $query = "SELECT Language, Framework, Knowledge, Color from skills WHERE UserID = ? and Development = ? ORDER by Language";
-        $Front = DB::getInstance()->find($query, array(2, 'Front-End'));
-        $Back = DB::getInstance()->find($query, array(2, 'Back-End'));
-        $database = DB::getInstance()->find($query, array(2, 'database'));
-        $sysAdmin = DB::getInstance()->find($query, array(2, 'sysAdmin'));
-        $cms = DB::getInstance()->find($query, array(2, 'cms'));
+        $Front = DB::getInstance()->find($query, array($_SESSION['userID'], 'Front-End'));
+        $Back = DB::getInstance()->find($query, array($_SESSION['userID'], 'Back-End'));
+        $database = DB::getInstance()->find($query, array($_SESSION['userID'], 'database'));
+        $sysAdmin = DB::getInstance()->find($query, array($_SESSION['userID'], 'sysAdmin'));
+        $cms = DB::getInstance()->find($query, array($_SESSION['userID'], 'cms'));
         $file->writeCSV($user[0]['Firstname'], 'Front-End', $Front);
         $file->writeCSV($user[0]['Firstname'], 'Back-End', $Back);
         $file->writeCSV($user[0]['Firstname'], 'Database', $database);

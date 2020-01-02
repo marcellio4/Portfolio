@@ -37,7 +37,7 @@ $queryStory = "select ID, Story, Image from information where UserID = ?";
 $dataStory = DB::getInstance()->find($queryStory, array($_SESSION['userID']));
 $querySkills = "select ID, Development, Language, Framework, Knowledge from skills where UserID = ?";
 $dataSkills = DB::getInstance()->find($querySkills, array($_SESSION['userID']));
-$queryProjects = "select ID, Name, Description from projects where UserID = ?";
+$queryProjects = "select ID, Name, Description, Link from projects where UserID = ?";
 $dataProjects = DB::getInstance()->find($queryProjects, array($_SESSION['userID']));
 $msg = '';
 if (isset($_SESSION['msg-success'])){

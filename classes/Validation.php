@@ -108,14 +108,14 @@ class Validation {
     /**
      * @param string $key set for errors array key as name of the validated field
      * @param string $str name of the validated field
-     * @param bool $add add into error array for displaying message
+     * @param bool $addError
      * @return bool
      */
-    public function hasSpecialCharacters($key, $str, $add = false) {
-        if(! preg_match('/[\'^£$%&*()}{@#~?><>,|=_+¬-]/', $str)){
+    public function hasSpecialCharacters($key, $str, $addError = false) {
+        if(! preg_match('/[\'^£$%&*()}{@#~?><>,.|=_+¬-]/', $str)){
             return true;
         }
-        if ($add) {
+        if ($addError) {
             $this->errors_arr[$key] = 'Please do not use special characters such $%*~£ etc.';
         }
         $this->errors_detected = true;
@@ -151,7 +151,7 @@ class Validation {
      * @return bool
      */
     public function same($str1, $str2) {
-        return ($str1 === $str2);
+        return (strtolower($str1) === strtolower($str2));
     }
     
     /**
@@ -160,6 +160,20 @@ class Validation {
      */
     public function hasWhitespace($str){
         return (preg_match('/\s/', $str));
+    }
+    
+    /**
+     * @param string $key
+     * @param string $url
+     * @return mixed
+     */
+    public function url($key, $url) {
+        if(filter_var($url, FILTER_VALIDATE_URL)){
+            return true;
+        }
+        $this->errors_detected = true;
+        $this->errors_arr[$key] = 'Invalid Url.';
+        return false;
     }
     
 }

@@ -145,9 +145,24 @@ $(document).ready(() => {
     showVal('.knowledgeValue', $('#editKnowledge').val())
     showVal('.knowledgeValue', $('#knowledge').val())
 
+    $(document).click(function (event) {
+        const clickover = $(event.target);
+        const _opened = $(".collapse").hasClass("show");
+
+        if (_opened === true && !clickover.hasClass("navbar-toggler")) {
+            $("button.navbar-toggler").click();
+        }
+    });
+
     // add Project
     $('body').on('click', '.addProject', () => {
         $('#addProjectForm').validate({
+            rules: {
+                editUrl: {
+                    required: true,
+                    url: true
+                }
+            },
             submitHandler: function (form) {
                 let data = {};
                 $(form).serializeArray().map(x => data[x.name] = x.value)
@@ -237,6 +252,12 @@ $(document).ready(() => {
     })
     $('body').on('click', '.editProject', () => {
         $('#editProjectForm').validate({
+            rules: {
+                editUrl: {
+                    required: true,
+                    url: true
+                }
+            },
             submitHandler: function (form) {
                 let data = {};
                 $(form).serializeArray().map(x => data[x.name] = x.value)
@@ -300,6 +321,32 @@ $(document).ready(() => {
             }
         });
     })
+
+
+    $('#editSkillsModal').on('shown.bs.modal', function () {
+        // ... init all your modal here
+        let id = $('#editSkillsModal').find('button.editSkill').attr('data-id'),
+            color = '';
+        const colorChange = color => $(`#editColor`).val(color)
+        const modal={
+            modalEdit: id
+        }
+        $.ajax({
+            url: 'index.php?page=action',
+            data: modal,
+            type: 'post',
+            success: (data) => {
+                $.each($.parseJSON(data), (item, value) => {
+                    if (item === 'Color') {
+                        color = `#${value}`
+                    }
+                    $(`#edit${item}`).val(value)
+                })
+                showVal('.knowledgeValue', $('#editKnowledge').val())
+                colorChange(color)
+            }
+        })
+    });
 
     // edit Skills
     $('.edit').click(function () {
@@ -415,7 +462,7 @@ $(document).ready(() => {
         })
     })
 
-    if(searchParams.get('page') === 'admin'){
+    if (searchParams.get('page') === 'admin') {
         $.ajax({
             url: 'index.php?page=update',
             type: 'post',
